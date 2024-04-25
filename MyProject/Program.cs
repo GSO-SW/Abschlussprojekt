@@ -110,6 +110,7 @@ class Program
         var userNotes = context.Notes.Where(n => n.Username == username).ToList();
         if (userNotes.Any())
         {
+            
             Console.WriteLine($"Notizen für Benutzer '{username}':");
             foreach (var note in userNotes)
             {
