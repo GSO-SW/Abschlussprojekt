@@ -141,13 +141,13 @@ class Program
         if (userNotes.Any())
         {
             Console.Clear();
-            
             Console.WriteLine($"Notizen für Benutzer '{username}':");
             foreach (var note in userNotes)
             {
                 Console.WriteLine($"Titel: {note.Title}, Inhalt: {note.Content}");
             }
-        }
+            Console.ReadKey();
+        } 
         else
         {
             Console.WriteLine($"Keine Notizen gefunden für Benutzer '{username}'.");
@@ -156,7 +156,7 @@ class Program
 
     static void CreateNote(GSO_ABSCHLUSS context, string username)
     {
-        Console.Clear();
+        
         Console.WriteLine("Titel der Notiz:");
         string title = Console.ReadLine();
 
