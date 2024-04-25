@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using MyProject;
 using NotizData;
+using Figgle;
 
 class Program
 {
@@ -9,6 +11,19 @@ class Program
     {
         while (true)
         {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            string textToAnimate = (FiggleFonts.Slant.Render("Notizen"));
+            foreach (char c in textToAnimate)
+            {
+                if (c == '\n')
+                {
+                    Thread.Sleep(200);
+                }
+                Console.Write(c);
+            }
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("--------------------");
             Console.WriteLine("1. Einloggen");
             Console.WriteLine("2. Registrieren");
             Console.WriteLine("3. Beenden");
@@ -27,7 +42,7 @@ class Program
                 case "3":
                     return;
                 default:
-                    Console.WriteLine("Ungültige Option.");
+                    BlinkInvalidOption();
                     break;
             }
         }
@@ -56,6 +71,19 @@ class Program
 
     static void Register()
     {
+        Console.Clear();
+        Console.ForegroundColor = ConsoleColor.Magenta;
+            string textToAnimate = (FiggleFonts.Slant.Render("Registrieren"));
+            foreach (char c in textToAnimate)
+            {
+                if (c == '\n')
+                {
+                    Thread.Sleep(200);
+                }
+                Console.Write(c);
+            }
+            Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine("--------------------");
         using var context = new GSO_ABSCHLUSS();
 
         Console.WriteLine("Benutzername:");
@@ -81,6 +109,8 @@ class Program
     {
         while (true)
         {
+            Console.Clear();
+
             Console.WriteLine("1. Notizen anzeigen");
             Console.WriteLine("2. Neue Notiz erstellen");
             Console.WriteLine("3. Abmelden");
@@ -99,7 +129,7 @@ class Program
                 case "3":
                     return;
                 default:
-                    Console.WriteLine("Ungültige Option.");
+                    BlinkInvalidOption();
                     break;
             }
         }
@@ -110,6 +140,7 @@ class Program
         var userNotes = context.Notes.Where(n => n.Username == username).ToList();
         if (userNotes.Any())
         {
+            Console.Clear();
             
             Console.WriteLine($"Notizen für Benutzer '{username}':");
             foreach (var note in userNotes)
@@ -125,6 +156,7 @@ class Program
 
     static void CreateNote(GSO_ABSCHLUSS context, string username)
     {
+        Console.Clear();
         Console.WriteLine("Titel der Notiz:");
         string title = Console.ReadLine();
 
@@ -136,4 +168,36 @@ class Program
         context.SaveChanges();
         Console.WriteLine($"Notiz mit Titel '{title}' erfolgreich erstellt für Benutzer '{username}'.");
     }
+
+    static void BlinkInvalidOption()
+    {
+        // Speichert die ursprüngliche Farbe
+        ConsoleColor originalColor = Console.ForegroundColor;
+
+        // Die gewünschte Blinkdauer in Millisekunden
+        int blinkDuration = 3000;
+
+        // Zeit, wenn das Blinken beginnt
+        DateTime startTime = DateTime.Now;
+
+        // Solange die Blinkdauer nicht abgelaufen ist
+        while ((DateTime.Now - startTime).TotalMilliseconds < blinkDuration)
+        {
+            Console.Clear();
+            // Farbe auf Rot setzen
+            Console.ForegroundColor = ConsoleColor.Red;
+            
+            Console.WriteLine("Falsche Eingabe.");
+            
+            // Eine kurze Pause einlegen, um den Blinkeffekt zu erzeugen
+            Thread.Sleep(500);
+            Console.Clear();
+            Console.ForegroundColor =ConsoleColor.Black;
+            Console.WriteLine("Falsche Eingabe.");
+            Thread.Sleep(500);
+            
+
+        Console.ForegroundColor = originalColor;
+    }
+}
 }
