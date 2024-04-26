@@ -4,3 +4,7 @@ Das ist mein UML für mein Abschlussprojekt!
 
 
 Akinci bester Lehrer :)
+
+Wenn sie keine 1 geben, dann schicken wir sie Remmertz zu ihnen!!!
+
+Remmertz wird dann sehr böse sein!
