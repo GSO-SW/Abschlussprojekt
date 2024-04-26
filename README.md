@@ -1,5 +1,1 @@
-# codespace-dotnet-template
-Ein .NET GitHub Codespace Template ist eine Vorlage oder eine vorgefertigte Konfiguration für die Erstellung eines GitHub Codespace für .NET-basierte Projekte.
-
-### .Net-Version ändern
-<a href="[../../.devcontainer/devcontainer.json#L11">Hier</a> können Sie die .Net-Version der Kontainer SDK ändern.
+![Unbenanntes Diagramm](https://github.com/GSO-SW/Abschlussprojekt/assets/112069525/a473a417-7d93-4259-ba18-52fdb0d7cd27)
